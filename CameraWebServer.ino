@@ -14,8 +14,8 @@ const char* ssid = "...........";
 const char* password = "............";
 
 // Telegram bot
-const char* botToken = "8153436686:AAFycsH481V0eeByhJIg-fdKwiku-cmFbwc";
-const char* chatID = "6139934019";
+const char* botToken = "....";
+const char* chatID = "....";
 
 WiFiClientSecure clientTCP;
 
