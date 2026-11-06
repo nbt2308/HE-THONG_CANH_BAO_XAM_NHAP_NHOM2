@@ -8,35 +8,21 @@
 #include "fb_gfx.h"
 #include "esp_http_server.h"
 
-// ==================================================
-// WIFI CONFIGURATION
-// ==================================================
-
 const char* ssid = "";
 const char* password = "";
-
-// ==================================================
-// TELEGRAM CONFIGURATION
-// ==================================================
 
 const char* botToken = "";
 const char* chatID = "";
 
 WiFiClientSecure telegramClient;
 
-// ==================================================
-// CAMERA MODEL
-// ==================================================
+
 
 #define CAMERA_MODEL_AI_THINKER
 #include "camera_pins.h"
 
-// ==================================================
 // CAMERA WEB SERVER
 // Implemented in app_httpd.cpp
-// Do not define this function again!
-// ==================================================
-
 void startCameraServer();
 
 // ==================================================
@@ -53,16 +39,11 @@ unsigned long lastMotionTime = 0;
 
 bool cameraReady = false;
 
-// ==================================================
 // CAMERA MUTEX
-// ==================================================
-
 SemaphoreHandle_t cameraMutex = NULL;
 
-// ==================================================
-// CAMERA INITIALIZATION
-// ==================================================
 
+// CAMERA INITIALIZATION
 bool initializeCamera() {
 
     Serial.println("\nInitializing camera...");
@@ -153,10 +134,7 @@ bool initializeCamera() {
     return true;
 }
 
-// ==================================================
 // CAPTURE PHOTO
-// ==================================================
-
 camera_fb_t* capturePhoto() {
 
     camera_fb_t* fb = NULL;
@@ -202,10 +180,8 @@ camera_fb_t* capturePhoto() {
     return NULL;
 }
 
-// ==================================================
-// SEND PHOTO TO TELEGRAM
-// ==================================================
 
+// SEND PHOTO TO TELEGRAM
 bool sendPhotoTelegram(camera_fb_t* fb) {
 
     if (fb == NULL || fb->len == 0) {
@@ -313,10 +289,8 @@ bool sendPhotoTelegram(camera_fb_t* fb) {
     return success;
 }
 
-// ==================================================
-// SETUP
-// ==================================================
 
+// SETUP
 void setup() {
 
     Serial.begin(115200);
@@ -394,10 +368,8 @@ void setup() {
     Serial.println("PIR sensor warming up...");
 }
 
-// ==================================================
-// MAIN LOOP
-// ==================================================
 
+// MAIN LOOP
 void loop() {
 
     if (!cameraReady) {
